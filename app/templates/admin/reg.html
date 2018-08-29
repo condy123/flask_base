@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+</head>
+<body>
+    <h4>这里是注册页面</h4>
+    <hr />
+    <div>
+         {% for msg in get_flashed_messages(category_filter=['OK']) %}
+                <p class="login-box-msg" style="color: green;">{{msg}}</p>
+         {% endfor %}
+        <form action="{{ url_for('admin.reg') }}" method="post" enctype="multipart/form-data">
+            <div>
+                {{ form.username.label }}:{{ form.username() }} {{ username }}
+                {% for error in form.username.errors %}
+                    <font style="color: red;">{{error}}</font>
+                {% endfor %}
+            </div>
+
+            <div>
+                {{ form.password.label }}:{{ form.password() }} {{ password }}
+                {% for error in form.password.errors %}
+                    <font style="color: red;">{{error}}</font>
+                {% endfor %}
+            </div>
+             <div>
+                {{ form.password_re.label }}:{{ form.password_re() }} {{ password_re }}
+                 {% for error in form.password_re.errors %}
+                    <font style="color: red;">{{error}}</font>
+                {% endfor %}
+            </div>
+            <div>
+               {{ form.logo.label }}:{{ form.logo() }} {{ logo }}
+            </div>
+             {{ form.csrf_token }}
+            <div>
+                {{ form.submit }}
+            </div>
+        </form>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+</head>
+<body>
+我是首页,我是首页
+<div>
+{%    if username %}
+欢迎您：{{ username }}
+     <a href="{{ url_for('admin.logo') }}"><button>我的头像</button></a>
+    <a href="{{ url_for('admin.logout') }}"><button>退出</button></a>
+{% else %}
+    <a href="{{ url_for('admin.login') }}"><button>登录</button></a>
+    <a href="{{ url_for('admin.reg') }}"><button>注册</button></a>
+{% endif %}
+</div>
+    <div>
+      <a href="{{ url_for('admin.article') }}"><button>去文章页面</button></a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>文章页面</title>
+</head>
+<body>
+
+<a href="{{ url_for('admin.index') }}"><button>去首页</button></a>
+<a href="{{ url_for('admin.logout') }}"><button>退出</button></a>
+<span>我是文章页面</span>
+<span>欢迎您：{{ username }} </span>
+
+{% for art in article %}
+<div>
+    <div>
+        <span>{{ art.title }}</span>&nbsp;&nbsp;&nbsp;<span>{{ art.addtime }}</span>
+    </div>
+    <div>{{ art.content }}</div>
+</div>
+{% endfor %}
+</body>
+</html>
