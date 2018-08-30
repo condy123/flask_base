@@ -16,7 +16,7 @@ from app.util.func import Func
 from . import admin
 from flask import render_template, request, redirect, url_for, flash, session, g
 from app.admin.forms import LoginForm, RegForm
-from app import db, app, cache
+from app import db, app
 
 
 @admin.route('/index')
@@ -114,7 +114,7 @@ def is_login(f):
 
 @admin.route('/article')
 @is_login
-@cache.cached(timeout=60*2) #使用reids缓存 但是不建议这么用，还是使用第三方的reidis  set get方便
+# @cache.cached(timeout=60*2) #使用reids缓存 但是不建议这么用，还是使用第三方的reidis  set get方便
 def article():
     articles = Artcle.query.all()
     return render_template('admin/article.html', username = session['username'], article = articles)

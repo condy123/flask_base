@@ -1,5 +1,4 @@
 from flask import Flask
-from flask_cache import Cache
 from flask_sqlalchemy import SQLAlchemy
 
 
@@ -18,8 +17,8 @@ app.debug = True
 db = SQLAlchemy(app)
 
 #实例化redis
-cache = Cache()
-cache.init_app(app)
+# cache = Cache()
+# cache.init_app(app)
 
 # 此处遇到一个坑，蓝图必须在实例之后引入，不然会报错 ImportError: cannot import name 'xx'
 from app.admin import admin as admin_bp
