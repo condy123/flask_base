@@ -1,0 +1,11 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>我的头像</title>
+</head>
+<body>
+<a href="{{ url_for('admin.index') }}"><button>返回首页</button></a>
+    <img src="{{ url_for('static',filename='uploads/'+logo) }}">
+</body>
+</html>
