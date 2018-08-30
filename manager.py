@@ -1,5 +1,5 @@
 from app import app
-from flask_sqlalchemy import SQLAlchemy
-db = SQLAlchemy(app)
+
+#定义入口
 if __name__== '__main__':
     app.run()

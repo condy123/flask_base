@@ -5,6 +5,7 @@
 # @Time    : 2018/8/28 17:55
 # @File    : views.py
 # @Software: PyCharm
+import os
 from functools import wraps
 
 from werkzeug.security import generate_password_hash
@@ -15,7 +16,7 @@ from app.util.func import Func
 from . import admin
 from flask import render_template, request, redirect, url_for, flash, session, g
 from app.admin.forms import LoginForm, RegForm
-from app import db, app
+from app import db, app, cache
 
 
 @admin.route('/index')
@@ -48,7 +49,7 @@ def login():
         if form.validate_on_submit():
             data = form.data
             user = User.query.filter_by(username=data['username']).first()
-            if not user.check_pwd(data['password']):
+            if not user.check_password(data['password']):
                 flash('账号不存在、或密码错误','error')
             # 查表进行相关判断
             else:
@@ -73,6 +74,9 @@ def reg():
         if form.validate_on_submit():
             data = form.data
             file_logo = secure_filename(form.logo.data.filename)
+            if not os.path.exists(app.config['UP_DIR']):
+                os.makedirs(app.config['UP_DIR'])
+                os.chmod(app.config['UP_DIR'], 777)
             logo = Func.change_filename(file_logo)
             form.logo.data.save(app.config['UP_DIR'] + logo)
             # 已经在RegForm里面查询用户名是否存在
@@ -110,11 +114,16 @@ def is_login(f):
 
 @admin.route('/article')
 @is_login
+
+@cache.cached(timeout=60*2) #使用reids缓存 但是不建议这么用，还是使用第三方的reidis  set get方便
 def article():
     articles = Artcle.query.all()
     return render_template('admin/article.html', username = session['username'], article = articles)
 
-# @admin.route('/logo')
-
+@admin.route('/logo')
+@is_login
+def logo():
+    user = User.query.filter_by(id=session['userid']).first()
+    return render_template('admin/logo.html', logo=user.logo)
 
 

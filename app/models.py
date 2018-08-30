@@ -12,7 +12,8 @@ class User(db.Model):
     def __repr__(self):
         return '<User %r>' % self.username
 
-    def check_pwd(self,password):
+    # 验证密码
+    def check_password(self,password):
         from werkzeug.security import check_password_hash
         return check_password_hash(self.password,password)
 
@@ -23,7 +24,8 @@ class Artcle(db.Model):
     content = db.Column(db.TEXT,nullable=False)
     addtime = db.Column(db.DateTime, index=True, default=datetime.now)
 
-if __name__ == '__main__':
-    # 创建表
-    db.create_all()
-    db.session.commit()
+# 运行此处会连接数据库建立对应的表
+# if __name__ == '__main__':
+#     # 创建表
+#     db.create_all()
+#     db.session.commit()
