@@ -1,3 +1,12 @@
+# -*- coding:utf-8 -*-
+
+# @Author  : tang
+# @Contact : 373162947@qq.com
+# @Time    : 2018/8/28 17:55
+# @File    : func.py
+# @Software: PyCharm
+
+# 主要用于定义一些常用功能
 import os
 import uuid
 from datetime import datetime

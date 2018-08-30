@@ -1,7 +1,14 @@
+# -*- coding:utf-8 -*-
+
+# @Author  : tang
+# @Contact : 373162947@qq.com
+# @Time    : 2018/8/28 17:55
+# @File    : forms.py
+# @Software: PyCharm
+
 from flask_wtf import FlaskForm
 from wtforms import StringField, PasswordField, SubmitField, FileField
 from wtforms.validators import DataRequired, Length, EqualTo, ValidationError, Regexp
-
 from app.models import User
 
 

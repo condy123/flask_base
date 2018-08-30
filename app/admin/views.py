@@ -114,7 +114,6 @@ def is_login(f):
 
 @admin.route('/article')
 @is_login
-
 @cache.cached(timeout=60*2) #使用reids缓存 但是不建议这么用，还是使用第三方的reidis  set get方便
 def article():
     articles = Artcle.query.all()

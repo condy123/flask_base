@@ -1,7 +1,16 @@
+# -*- coding:utf-8 -*-
+
+# @Author  : tang
+# @Contact : 373162947@qq.com
+# @Time    : 2018/8/28 17:55
+# @File    : config.py
+# @Software: PyCharm
+
 import os
 
 # 所有的配置相关的key 必须是大写
 
+#提交表单要使用 SECRET_KEY，且在视图文件中使用对应的  {{ form.csrf_token }}
 SECRET_KEY = 'usda781qsyt562wsd0okmh'
 CSRF_ENABLED = True
 port = 5001
